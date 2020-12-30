@@ -36,7 +36,7 @@
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
 | item_name       | string     | null: false |
-| amount          | string     | null: false |
+| amount          | integer    | null: false |
 | condition_id    | integer    | null: false |
 | delivery_fee_id | integer    | null: false |
 | ship_from_id    | integer    | null: false |
@@ -52,9 +52,13 @@
 
 ## address テーブル
 
-| Column        | Type       | Options     |
-| ------------- | ---------- | ----------- |
-| address       | string     | null: false |
+| Column         | Type       | Options     |
+| -------------  | ---------- | ----------- |
+| postal_code    | string     | null: false |
+| prefecture     | string     | null: false |
+| municipalities | string     | null: false |
+| building       | string     | null: false |
+| phone_number   | string     | null: false |
 
 ### Association
 
@@ -65,8 +69,6 @@
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
 | item_name       | string     | null: false |
-| amount          | string     | null: false |
-| expense         | string     | null: false |
 | user_id         | references | null: false |
 
 ### Association

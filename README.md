@@ -8,8 +8,9 @@
 | surname            | string | null: false |
 | firstname_kana     | string | null: false |
 | surname_kana       | string | null: false |
+| nickname           | string | null: false |
 | email              | string | null: false |
-| birthdata          | string | null: false |
+| birthdata          | date   | null: false |
 | encrypted_password | string | null: false |
 
 ### Association
@@ -32,19 +33,43 @@
 
 ## exhibit テーブル
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| item_name    | string | null: false |
-| amount       | string | null: false |
-| condition    | string | null: false |
-| delivery_fee | string | null: false |
-| ship_from    | string | null: false |
-| duration     | string | null: false |
-| text         | text   | null: false |
-| category     | string | null: false |
-| user_id      | string | null: false |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| item_name       | string     | null: false |
+| amount          | string     | null: false |
+| condition_id    | integer    | null: false |
+| delivery_fee_id | integer    | null: false |
+| ship_from_id    | integer    | null: false |
+| duration_id     | integer    | null: false |
+| text            | text       | null: false |
+| category_id     | integer    | null: false |
+| user_id         | references | null: false |
 
 ### Association
 
 - has_many :comments
-- belongs_to :user
+- belongs_to :users
+
+## address テーブル
+
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| address       | string     | null: false |
+
+### Association
+
+- belongs_to :users
+
+## purchase history テーブル
+
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| item_name       | string     | null: false |
+| amount          | string     | null: false |
+| expense         | string     | null: false |
+| user_id         | references | null: false |
+
+### Association
+
+- belongs_to :users
+

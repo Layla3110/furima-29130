@@ -62,9 +62,9 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :purchase_history
 
-## purchase history テーブル
+## purchase_history テーブル
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |

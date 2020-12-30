@@ -2,17 +2,19 @@
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-| nick_name| string | null: false |
-| address  | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| firstname          | string | null: false |
+| surname            | string | null: false |
+| firstname_kana     | string | null: false |
+| surname_kana       | string | null: false |
+| email              | string | null: false |
+| birthdata          | string | null: false |
+| encrypted_password | string | null: false |
 
 ### Association
 
-- has_many :exhibit
+- has_many :exhibits
 - has_many :comments
 
 ## comments テーブル
@@ -30,13 +32,19 @@
 
 ## exhibit テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| text     | string | null: false |
-| image    | string | null: false |
-| user_id  | string | null: false |
+| Column       | Type   | Options     |
+| ------------ | ------ | ----------- |
+| item_name    | string | null: false |
+| amount       | string | null: false |
+| condition    | string | null: false |
+| delivery_fee | string | null: false |
+| ship_from    | string | null: false |
+| duration     | string | null: false |
+| text         | text   | null: false |
+| category     | string | null: false |
+| user_id      | string | null: false |
 
 ### Association
 
 - has_many :comments
-- belongs_to :users
+- belongs_to :user

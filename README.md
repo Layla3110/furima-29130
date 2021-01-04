@@ -50,7 +50,7 @@
 
 - has_many :comments
 - belongs_to :user
-- belongs_to :purchase_history
+- has_one :purchase_history
 
 ## address テーブル
 
@@ -79,5 +79,6 @@
 
 - belongs_to :user
 - belongs_to :exhibit
+- has_one :address
 
 

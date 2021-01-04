@@ -17,6 +17,7 @@
 
 - has_many :exhibits
 - has_many :comments
+- has_many :purchase_histories 
 
 ## comments テーブル
 
@@ -29,7 +30,7 @@
 ### Association
 
 - belongs_to :exhibit
-- belongs_to :users
+- belongs_to :user
 
 ## exhibit テーブル
 
@@ -39,28 +40,29 @@
 | amount          | integer    | null: false                    |
 | condition_id    | integer    | null: false                    |
 | delivery_fee_id | integer    | null: false                    |
-| ship_from_id    | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | duration_id     | integer    | null: false                    |
 | text            | text       | null: false                    |
 | category_id     | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :comments
-- belongs_to :users
+- belongs_to :user
+- belongs_to :purchase_history
 
 ## address テーブル
 
-| Column           | Type       | Options     |
-| -------------    | ---------- | ----------- |
-| postal_code      | string     | null: false |
-| prefecture_id    | string     | null: false |
-| municipalities   | string     | null: false |
-| house_number     | string     | null: false |
-| building         | string     |             |
-| phone_number     | string     | null: false |
-| purchase_history | string     |             |
+| Column           | Type       | Options                        |
+| -------------    | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipalities   | string     | null: false                    |
+| house_number     | string     | null: false                    |
+| building         | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase_history | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -68,14 +70,14 @@
 
 ## purchase_history テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| item   | references | null: false , foreign_key: true|
-| user   | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------  | ---------- | ------------------------------ |
+| exhibit | references | null: false , foreign_key: true|
+| user    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :exhibit
+- belongs_to :exhibit
 
 

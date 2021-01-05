@@ -1,25 +1,84 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options             |
+| ------------------ | ------ | ------------------- |
+| firstname          | string | null: false         |
+| surname            | string | null: false         |
+| firstname_kana     | string | null: false         |
+| surname_kana       | string | null: false         |
+| nickname           | string | null: false         |
+| email              | string | null: false, default|
+| birthdata          | date   | null: false         |
+| encrypted_password | string | null: false         |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :exhibits
+- has_many :comments
+- has_many :purchase_histories 
 
-* Configuration
+## comments テーブル
 
-* Database creation
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| comment_text | string     |                                |
+| user_id      | references | null: false, foreign_key: true |
+| tweet_text   | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :exhibit
+- belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
+## exhibit テーブル
 
-* Deployment instructions
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| item_name       | string     | null: false                    |
+| amount          | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| duration_id     | integer    | null: false                    |
+| text            | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
-* ...
-aaa
+### Association
+
+- has_many :comments
+- belongs_to :user
+- has_one :purchase_history
+
+## address テーブル
+
+| Column           | Type       | Options                        |
+| -------------    | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipalities   | string     | null: false                    |
+| house_number     | string     | null: false                    |
+| building         | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase_history | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :purchase_history
+
+## purchase_history テーブル
+
+| Column  | Type       | Options                        |
+| ------  | ---------- | ------------------------------ |
+| exhibit | references | null: false , foreign_key: true|
+| user    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :exhibit
+- has_one :address
+
+

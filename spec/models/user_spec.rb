@@ -28,6 +28,11 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
+    it '@を含まないemailだと登録できない' do
+      @user.email = 'aaaaaaaaa.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Email is invalid')
+    end
     it "passwordが空では登録できない" do
       @user.password = ""
       @user.valid?
@@ -46,22 +51,22 @@ RSpec.describe User, type: :model do
     it "surnameが空では登録できない" do
       @user.surname = ""  # surnameの値を空にする
       @user.valid?
-      expect(@user.errors.full_messages).to include("Surname can't be blank")
+      expect(@user.errors.full_messages).to include("Surname Full-width characters")
     end
     it "firstnameが空では登録できない" do
       @user.firstname = ""  # firstnameの値を空にする
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname can't be blank")
+      expect(@user.errors.full_messages).to include("Firstname Full-width characters")
     end
     it "surname_kanaが空では登録できない" do
       @user.surname_kana = ""  # surname_kanaの値を空にする
       @user.valid?
-      expect(@user.errors.full_messages).to include("Surname kana can't be blank")
+      expect(@user.errors.full_messages).to include("Surname kana Full-width katakana characters")
     end
     it "firstname_kanaが空では登録できない" do
       @user.firstname_kana = ""  # firstname_kanaの値を空にする
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname kana can't be blank")
+      expect(@user.errors.full_messages).to include("Firstname kana Full-width katakana characters")
     end
     it "birthdataが空では登録できない" do
       @user.birthdata = ""  # birthdataの値を空にする
@@ -87,12 +92,12 @@ RSpec.describe User, type: :model do
     it 'surname_kanaが全角カタカナでなければ登録できない' do
       @user.surname_kana = "あいうえお"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Surname kana surname_kana Full-width katakana characters")
+      expect(@user.errors.full_messages).to include("Surname kana Full-width katakana characters")
     end
     it 'firstname_kanaが全角カタカナでなければ登録できない' do
       @user.firstname_kana = "あいうえお"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname kana firstname_kana kana Full-width katakana characters")
+      expect(@user.errors.full_messages).to include("Firstname kana Full-width katakana characters")
     end
   end
 end

@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   end
 
   describe "ユーザー新規登録" do
-    # let(:@user_donation){create(:@user_donation)} 
 
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@user).to be_valid

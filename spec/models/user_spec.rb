@@ -43,8 +43,23 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+    it 'passwordがpassword_confirmationと一致していない場合、無効である' do
+      @user.password_confirmation = "1bbbbbb"
+      @user.valid?
+      expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
+    end
     it 'password:半角英数混合(半角、尚且つ英数混合のみ)' do
-      @user.password = 'aaaaaaa', '1111111', 'ａａａａａａａ'
+      @user.password = 'aaaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it 'password:半角英数混合(半角、尚且つ英数混合のみ)' do
+      @user.password = '1111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it 'password:半角英数混合(半角、尚且つ英数混合のみ)' do
+      @user.password = 'ａａａａａａａ'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end

@@ -1,19 +1,18 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update,]
+  before_action :authenticate_user!, except: [:index]
+  # before_action :set_item, only: [:edit, :update,]
 
-  # 省略
+    # def index
+    #   @items = Item.all
+    # end
 
-    def index
-      @items = Item.all
-    end
-
-    def edit
-    end
+    # def edit
+    # end
   
-    def update
-      @item.update(item_params)
-      redirect_to root_path
-    end
+    # def update
+    #   @item.update(item_params)
+    #   redirect_to root_path
+    # end
   
     def new
       @item = Item.new

@@ -1,0 +1,5 @@
+<%= form_with model: @item, local: true do |f| %>
+  <%= f.text_field :content, placeholder: 'type a item' %>
+  <%= f.file_field :image %>
+  <%= f.submit '送信' %>
+<% end %>

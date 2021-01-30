@@ -1,6 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update,]
+
   # 省略
+
+    def index
+      @items = Item.all
+    end
+
     def edit
     end
   
@@ -31,9 +37,5 @@ class ItemsController < ApplicationController
 
     def set_item
       @item = Item.find(params[:id])
-    end
-
-    def item_params
-      params.require(:item).permit(:name, :prefecture_id)
     end
   end

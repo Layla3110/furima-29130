@@ -24,9 +24,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
       it 'category_idを選択しないと登録できない' do
-        @item.category_id = 'レディース'
+        @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it "condition_idを選択しないと登録できない" do
         @item.condition_id = ""

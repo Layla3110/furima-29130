@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item_name
     validates :text
-    validates :amount 
+    validates :amount, inclusion:{in:300..9999999}, format:{with: /\A[0-9]+\z/}
     validates :condition_id
     validates :delivery_fee_id
     validates :prefecture_id

@@ -53,6 +53,21 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Amount can't be blank")
       end
+      it 'amountが半角数字でなければ登録できない' do
+        @item.amount = "１２３４５"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Amount is not included in the list")
+      end
+      it "amountが299円以下では登録できない" do
+        @item.amount = '200'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Amount is not included in the list")
+      end
+      it "amountが10000000円以上では登録できない" do
+        @item.amount = '10000001'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Amount is not included in the list")
+      end
       it 'imageがなければ登録できない' do
         @item.image = nil
         @item.valid?

@@ -1,6 +1,6 @@
 class PurchaseHistoryController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:show, :purchase, :pay]
+  before_action :set_item
 
   def index
     @purchase = Purchase.new
@@ -8,9 +8,6 @@ class PurchaseHistoryController < ApplicationController
     if current_user.id == @item.user_id || @item.purchase_history.present?
         redirect_to root_path
     end
-  end
-
-  def new
   end
 
   def create

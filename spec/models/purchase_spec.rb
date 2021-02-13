@@ -13,8 +13,11 @@ RSpec.describe Purchase, type: :model do
       it 'すべての条件が入力されていれば保存できること' do
         expect(@purchase).to be_valid
       end
+      it 'buildingが空でも登録できること' do
+        expect(@purchase).to be_valid
+      end
     end
-
+      
     context 'クレジットカード情報登録ができない時' do
       it "tokenが空では登録できない" do
         @purchase.token = ""
@@ -58,6 +61,11 @@ RSpec.describe Purchase, type: :model do
       end
       it "phone_numberにハイフンがあると登録できない" do
         @purchase.phone_number = '000-0000-0000'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone number is invalid.")
+      end
+      it 'phone_numberが英数混合では登録できない' do
+        @purchase.phone_number = 'a11-1111-1111'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone number is invalid.")
       end

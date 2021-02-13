@@ -29,10 +29,10 @@
 
 ### Association
 
-- belongs_to :exhibit
+- belongs_to :item
 - belongs_to :user
 
-## exhibit テーブル
+## items テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -72,13 +72,13 @@
 
 | Column  | Type       | Options                        |
 | ------  | ---------- | ------------------------------ |
-| exhibit | references | null: false , foreign_key: true|
+| item    | references | null: false , foreign_key: true|
 | user    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :exhibit
+- belongs_to :item
 - has_one :address
 
 

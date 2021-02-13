@@ -1,9 +1,13 @@
 class PurchaseHistoryController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item, only: [:show, :purchase, :pay]
 
   def index
     @purchase = Purchase.new
     @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id || @item.purchase_history.present?
+        redirect_to root_path
+    end
   end
 
   def new

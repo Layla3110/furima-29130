@@ -14,6 +14,8 @@ RSpec.describe Purchase, type: :model do
         expect(@purchase).to be_valid
       end
       it 'buildingが空でも登録できること' do
+        @purchase.building = ""
+        @purchase.valid?
         expect(@purchase).to be_valid
       end
     end

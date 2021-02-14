@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
     end
 
     def checkuser
-      if current_user.id =! @item.user.id 
+      if current_user.id != @item.user.id 
         redirect_to item_path
       end
     end

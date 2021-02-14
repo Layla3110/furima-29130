@@ -18,7 +18,6 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :duration_id
     validates :category_id
-    validates :user
     validates :image
 
     validates :category_id, numericality: { other_than: 1 } 
